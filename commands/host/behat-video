@@ -1,0 +1,34 @@
+#!/bin/bash
+#ddev-generated
+## Description: Launch behat tests with video recording
+## Usage: behat-video <environment> <behat_args>
+## Aliases: behat-video, behat-v, bv
+## Example: "ddev behat-video local"
+
+VIDEO_COMPOSE="${DDEV_APPROOT}/.ddev/disabled.docker-compose.selenium-video.yaml"
+ENABLED_COMPOSE="${DDEV_APPROOT}/.ddev/docker-compose.selenium-video.yaml"
+
+# Activa la grabación renombrando el fichero
+if [ -f "$VIDEO_COMPOSE" ]; then
+  mv "$VIDEO_COMPOSE" "$ENABLED_COMPOSE"
+  echo "Video recording activated."
+else
+  echo "Video compose file already enabled or missing."
+fi
+
+# Reinicia ddev para activar la configuración
+ddev restart
+
+# Ejecuta los tests behat con todos los parámetros recibidos
+ddev behat "$@"
+
+# Tras la ejecución, desactiva la grabación renombrando el fichero
+if [ -f "$ENABLED_COMPOSE" ]; then
+  mv "$ENABLED_COMPOSE" "$VIDEO_COMPOSE"
+  echo "Video recording deactivated."
+else
+  echo "Video compose file was already disabled or missing."
+fi
+# Reinicia ddev para volver al estado original
+ddev restart
+echo "All tests were recorded. You can find the videos in the ${DDEV_APPROOT}/reports/videos directory."

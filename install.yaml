@@ -1,6 +1,10 @@
 name: selenium-video
 
 project_files:
-  - docker-compose.selenium-video.yaml
+  - disabled.docker-compose.selenium-video.yaml
+  - commands/host/behat-video
 
-ddev_version_constraint: '>= v1.24.3'
+ddev_version_constraint: '>= v1.24.4'
+dependencies:
+  - ddev-selenium
+  - ddev-aljibe

@@ -1,0 +1,20 @@
+#ddev-generated
+services:
+  selenium-video:
+    image: selenium/video:ffmpeg-7.1-20250515
+    container_name: ddev-${DDEV_SITENAME}-selenium-video
+    depends_on:
+      - chromium
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: ${DDEV_APPROOT}
+    external_links:
+      - web:${DDEV_SITENAME}.${DDEV_TLD}
+    volumes:
+      - ${DDEV_APPROOT}/reports/videos:/videos
+      - .:/mnt/ddev_config:ro
+      - ddev-global-cache:/mnt/ddev-global-cache
+    environment:
+      - DISPLAY_CONTAINER_NAME=chromium
+      - SE_VIDEO_FILE_NAME=auto
+
