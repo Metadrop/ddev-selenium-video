@@ -9,6 +9,10 @@
 
 This add-on integrates Selenium Video into your [DDEV](https://ddev.com/) project.
 
+## Requirements
+- [DDEV Aljibe] (https://www.github.com/metadrop/ddev-aljibe)
+- [DDEV selenium] (https://www.github.com/metadrop/ddev-selenium)
+
 ## Installation
 
 ```bash
