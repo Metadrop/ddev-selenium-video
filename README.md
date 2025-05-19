@@ -13,35 +13,15 @@ This add-on integrates Selenium Video into your [DDEV](https://ddev.com/) projec
 
 ```bash
 ddev add-on get Metadrop/ddev-selenium-video
-ddev restart
 ```
 
 After installation, make sure to commit the `.ddev` directory to version control.
 
 ## Usage
 
-| Command | Description |
-| ------- | ----------- |
-| `ddev describe` | View service status and used ports for Selenium Video |
-| `ddev logs -s selenium-video` | Check Selenium Video logs |
-
-## Advanced Customization
-
-To change the Docker image:
-
-```bash
-ddev dotenv set .ddev/.env.selenium-video --selenium-video-docker-image="busybox:stable"
-ddev add-on get Metadrop/ddev-selenium-video
-ddev restart
-```
-
-Make sure to commit the `.ddev/.env.selenium-video` file to version control.
-
-All customization options (use with caution):
-
-| Variable | Flag | Default |
-| -------- | ---- | ------- |
-| `SELENIUM_VIDEO_DOCKER_IMAGE` | `--selenium-video-docker-image` | `busybox:stable` |
+| Command                       | Description                            |
+|-------------------------------|----------------------------------------|
+| `ddev behat-video <env>`      | Run behat tests with recodings enabled |
 
 ## Credits
 
