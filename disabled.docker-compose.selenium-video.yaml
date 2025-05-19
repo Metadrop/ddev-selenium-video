@@ -4,7 +4,7 @@ services:
     image: selenium/video:ffmpeg-7.1-20250515
     container_name: ddev-${DDEV_SITENAME}-selenium-video
     depends_on:
-      - chromium
+      - node-chromium
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
