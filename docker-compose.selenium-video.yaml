@@ -15,7 +15,7 @@ services:
     volumes:
       - ${DDEV_APPROOT}${SELENIUM_VIDEO_FOLDER:-/reports/videos}:/videos
     environment:
-      - DISPLAY_CONTAINER_NAME=${SELENIUM_VIDEO_CONTAINER:-chrome}
+      - DISPLAY_CONTAINER_NAME=${SELENIUM_VIDEO_CONTAINER:-chromium}
       - SE_VIDEO_FILE_NAME=auto
     profiles:
       - selenium-video
