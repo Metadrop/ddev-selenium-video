@@ -3,11 +3,12 @@ name: selenium-video
 project_files:
   - docker-compose.selenium-video.yaml
   - commands/host/behat-video
-
+  - seleniumVideoBuild/Dockerfile
 post_install:
   - mkdir -p ${DDEV_APPROOT}/reports/videos
 
 ddev_version_constraint: '>= v1.24.3'
+
 dependencies:
   - ddev-selenium
   - ddev-aljibe

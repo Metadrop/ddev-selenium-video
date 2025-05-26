@@ -5,8 +5,17 @@ services:
       - SE_RECORD_VIDEO=true
       - SE_VIDEO_NAME=auto
   selenium-video:
-    image: selenium/video:ffmpeg-7.1-20250515
     container_name: ddev-${DDEV_SITENAME}-selenium-video
+    build:
+      context: './seleniumVideoBuild'
+      args:
+        BASE_IMAGE: selenium/video:ffmpeg-7.1-20250515
+        username: $USER
+        uid: $DDEV_UID
+        gid: $DDEV_GID
+    image: selenium/video:ffmpeg-7.1-20250515-${DDEV_SITENAME}-built
+    user: '$DDEV_UID:$DDEV_GID'
+    restart: "no"
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
