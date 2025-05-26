@@ -13,12 +13,14 @@
 #   bats ./tests/test.bats --show-output-of-passing-tests --verbose-run --print-output-on-failure
 
 setup() {
+
   set -eu -o pipefail
 
   # Override this variable for your add-on:
   export GITHUB_REPO=Metadrop/ddev-selenium-video
 
   TEST_BREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
+
   export BATS_LIB_PATH="${BATS_LIB_PATH}:${TEST_BREW_PREFIX}/lib:/usr/lib/bats"
   bats_load_library bats-assert
   bats_load_library bats-file
@@ -32,9 +34,12 @@ setup() {
   export DDEV_NO_INSTRUMENTATION=true
   ddev delete -Oy "${PROJNAME}" >/dev/null 2>&1 || true
   cd "${TESTDIR}"
-  run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
+
+  run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site --project-type=php
+  ddev get metadrop/ddev-aljibe
+  ddev start -y >/dev/null
   assert_success
-  run ddev start -y
+  ddev aljibe-assistant --auto
   assert_success
 }
 
@@ -60,7 +65,8 @@ teardown() {
 
 @test "install from directory" {
   set -eu -o pipefail
-  run ddev add-on get metadrop/ddev-selenium
+  echo "# Installing Aljibe add-on from release" >&3
+  run ddev add-on get metadrop/ddev-aljibe
   echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
   run ddev add-on get "${DIR}"
   assert_success
@@ -72,7 +78,8 @@ teardown() {
 # bats test_tags=release
 @test "install from release" {
   set -eu -o pipefail
-  run ddev add-on get metadrop/ddev-selenium
+  echo "# Installing Aljibe add-on from release" >&3
+  run ddev add-on get metadrop/ddev-aljibe
   echo "# ddev add-on get ${GITHUB_REPO} with project ${PROJNAME} in $(pwd)" >&3
   run ddev add-on get "${GITHUB_REPO}"
   assert_success
