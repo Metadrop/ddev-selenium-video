@@ -36,10 +36,10 @@ setup() {
   cd "${TESTDIR}"
 
   run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site --project-type=php
-  ddev get metadrop/ddev-aljibe
-  ddev start -y >/dev/null
+  run ddev add-on get metadrop/ddev-aljibe
+  run ddev start -y >/dev/null
   assert_success
-  ddev aljibe-assistant --auto
+  run ddev aljibe-assistant --auto
   assert_success
 }
 

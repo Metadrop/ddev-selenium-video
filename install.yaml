@@ -11,4 +11,3 @@ ddev_version_constraint: '>= v1.24.3'
 
 dependencies:
   - ddev-selenium
-  - ddev-aljibe
