@@ -29,6 +29,23 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 
 ## Recommended behat.yml Configurations
+We recommend the use of https://github.com/Metadrop/behat-contexts to add steps and scenario info to the vídeos using VideoRecordingContext:
+```
+- Metadrop\Behat\Context\VideoRecordingContext:
+    parameters:
+        - Metadrop\Behat\Context\VideoRecordingContext:
+            parameters:
+              enabled: true
+              show_test_info_screen: true
+              show_test_info_screen_time: 2000
+              show_green_screen: false
+              show_green_screen_time: 1000
+              show_step_info_bubble: true
+              show_step_info_bubble_time: 2000
+              show_error_info_bubble: true
+              show_error_info_bubble_time: 2000
+```
+
 
 We advise implementing the following configurations within your **behat.yml** file. These should always be tailored to your specific requisites:
 If you use NuvoleWeb\Drupal\DrupalExtension\Context\ResponsiveContext set the correct screen size for your devices:
