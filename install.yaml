@@ -4,7 +4,7 @@ project_files:
   - docker-compose.selenium-video.yaml
   - commands/host/behat-video
   - seleniumVideoBuild/Dockerfile
-post_install:
+post_install_actions:
   - mkdir -p ${DDEV_APPROOT}/reports/videos
 
 ddev_version_constraint: '>= v1.24.3'
