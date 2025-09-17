@@ -67,6 +67,8 @@ teardown() {
   set -eu -o pipefail
   echo "# Installing Aljibe add-on from release" >&3
   run ddev add-on get metadrop/ddev-aljibe
+  echo "# Installing Selenium add-on from release" >&3
+  run ddev add-on get metadrop/ddev-selenium
   echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
   run ddev add-on get "${DIR}"
   assert_success
